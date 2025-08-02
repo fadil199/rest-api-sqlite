@@ -1,7 +1,9 @@
 const { Sequelize } = require("sequelize");
+const sqlite = require('sqlite3');
 
 const sequelize = new Sequelize({
-    dialect:"sqlite",
+    dialect: 'sqlite',
+    dialectModule: sqlite,
     host:"./api.db"
 });
 
