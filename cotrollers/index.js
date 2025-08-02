@@ -1,3 +1,4 @@
-const bookControllers = require("./bookControllers")
+const user = require("./user");
+const game = require("./game");
 
-module.exports = { bookControllers };
+module.exports = { user, game };

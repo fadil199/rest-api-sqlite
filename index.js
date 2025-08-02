@@ -3,6 +3,9 @@ const express = require("express");
 const morgan = require("morgan");
 const index = express();
 const cors = require("cors");
+const bodyparser = require("body-parser");
+const method = require("method-override");
+const path = require("path");
 const {connectDB} = require("./db/db")
 const router = require("./routes")
 
@@ -13,8 +16,26 @@ connectDB();
 index.use(express.json());
 index.use(cors())
 index.use(morgan("dev"));
+index.use(express.urlencoded({extended: false}));
+index.use(bodyparser.urlencoded({extended: false}));
+index.use(method("_method"));
+index.use(express.static(path.join(__dirname, "client")));
 
 index.use(router);
+
+index.use((req, res, next) => {
+    return res.status(400).json({
+        status: false,
+        message: "404 Oops!"
+    })
+})
+
+index.use((req, res,next) => {
+    return res.status(500).json({
+        status: false,
+        message: err.message
+    })
+})
 
 index.listen(http_port, () => console.log("listening on port", http_port));
 

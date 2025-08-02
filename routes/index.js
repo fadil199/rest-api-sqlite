@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const book = require("./book")
+const user = require("./user")
+const game = require("./game")
 
 router.get("/", (req, res) => {
     return res.status(200).json({
@@ -10,6 +11,7 @@ router.get("/", (req, res) => {
     });
   });
 
-router.use("/book", book);
+router.use("/auth", user);
+router.use("/game", game);
 
 module.exports = router;
