@@ -7,5 +7,12 @@ module.exports = {
         } catch (err) {
             next(err)
         }
+    },
+    getAllGame: async (req, res, next) => {
+        try {
+            
+        } catch (err) {
+            next(err)
+        }
     }
 }

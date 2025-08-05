@@ -1,9 +1,10 @@
 const router = require("express").Router()
 const control = require("../cotrollers")
 const midle = require("../middleware/auth");
+const validate = require("../middleware/validate");
 const roles = require("../utils/roles");
 
-router.post("/register", control.user.register);
+router.post("/register", validate(), control.user.register);
 router.post("/login", control.user.login);
 router.get("/me", midle(roles.user), control.user.me);
 
